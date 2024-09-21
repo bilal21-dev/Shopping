@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Products = () => {
+const Products = ({ item }) => {
     const [products, setProducts] = useState([]);
     const [load, setLoad] = useState(true);
 
@@ -15,9 +15,23 @@ const Products = () => {
             console.error('Error fetching products:', error);
         }
     };
+    const fetchSpecificProduct = async () => {
+        try {
+            const response = await axios.get(`https://dummyjson.com/products/search?q=${item}`);
+            const data = response.data;
+            setProducts(data.products);
+            setLoad(false)
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
     useEffect(() => {
-        fetchProducts();
-    }, []);
+        if (item) {
+            fetchSpecificProduct(); 
+        } else {
+            fetchProducts(); 
+        }
+    }, [item]);
 
     return (
         <div className="grid grid-cols-3 gap-6 p-6 ml-[215px] bg-white">
