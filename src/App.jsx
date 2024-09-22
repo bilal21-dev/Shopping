@@ -6,7 +6,7 @@ import Header from './Components/Header';
 import About from './Components/About'
 import Contact from './Components/Contact'
 import Cart from './Components/Cart'
-import LoginPage from './Components/LoginPage';
+import LoginPage from './Components/Login';
 
 const App = () => {
 

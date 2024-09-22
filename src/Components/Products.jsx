@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Login from './Login';
+import { useNavigate } from 'react-router-dom';
+import { MdCancel } from "react-icons/md";
+
 
 const Products = ({ item }) => {
     const [products, setProducts] = useState([]);
@@ -9,7 +13,7 @@ const Products = ({ item }) => {
 
     const handleClick = () => {
         if (login) {
-            alert("hi")
+            alert("Product added to cart")
         } else {
             setMessage(true);
         }
@@ -41,6 +45,10 @@ const Products = ({ item }) => {
             fetchProducts();
         }
     }, [item]);
+    const navigate = useNavigate();
+    const goToLogin = () => {
+        navigate('/login', { state: { login } });
+    };
 
     return (
         <div className="grid grid-cols-3 gap-6 p-6 ml-[215px] bg-white">
@@ -75,9 +83,12 @@ const Products = ({ item }) => {
             )}
             {message && (
                 <div className=" bg-black fixed top-[250px] left-[500px] rounded-lg bg-opacity-90 py-3">
-                    <div className=" text-white p-4 rounded-lg bg-opacity-80 flex flex-col gap-3">
+                    <div className=" text-white p-4 rounded-lg bg-opacity-80 flex flex-col gap-3 relative">
                         <p>Please Login/Sign-Up into your account</p>
-                        <button className='bg-yellow-500 px-3 rounded-lg' onClick={()=>setMessage(false)}>OK</button>
+                        <button className='bg-yellow-500 px-3 rounded-lg' onClick={goToLogin}>Go to Login Page</button>
+                        <div className='absolute top-0 right-4' onClick={(e)=>setMessage(false)}>
+                            <MdCancel />
+                        </div>
                     </div>
                 </div>
             )}
