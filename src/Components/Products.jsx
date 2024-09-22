@@ -4,7 +4,16 @@ import axios from 'axios';
 const Products = ({ item }) => {
     const [products, setProducts] = useState([]);
     const [load, setLoad] = useState(true);
+    const [login, setLogin] = useState(false);
+    const [message, setMessage] = useState(false)
 
+    const handleClick = () => {
+        if (login) {
+            alert("hi")
+        } else {
+            setMessage(true);
+        }
+    }
     const fetchProducts = async () => {
         try {
             const response = await axios.get('https://dummyjson.com/products?limit=100');
@@ -27,9 +36,9 @@ const Products = ({ item }) => {
     };
     useEffect(() => {
         if (item) {
-            fetchSpecificProduct(); 
+            fetchSpecificProduct();
         } else {
-            fetchProducts(); 
+            fetchProducts();
         }
     }, [item]);
 
@@ -59,10 +68,18 @@ const Products = ({ item }) => {
                         <p className="text-lg font-semibold">${product.price}</p>
                         <div className="absolute inset-0 bg-black bg-opacity-80 flex flex-col gap-5 justify-center items-center p-4 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out rounded-lg">
                             <p className="text-sm text-white text-center">{product.description}</p>
-                            <button className='bg-yellow-400 px-2 py-1 rounded-lg text-sm'>Add to cart</button>
+                            <button className='bg-yellow-400 px-2 py-1 rounded-lg text-sm' onClick={handleClick}>Add to cart</button>
                         </div>
                     </div>
                 ))
+            )}
+            {message && (
+                <div className=" bg-black fixed top-[250px] left-[500px] rounded-lg bg-opacity-90 py-3">
+                    <div className=" text-white p-4 rounded-lg bg-opacity-80 flex flex-col gap-3">
+                        <p>Please Login/Sign-Up into your account</p>
+                        <button className='bg-yellow-500 px-3 rounded-lg' onClick={()=>setMessage(false)}>OK</button>
+                    </div>
+                </div>
             )}
         </div>
     );

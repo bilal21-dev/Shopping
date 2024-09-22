@@ -6,6 +6,7 @@ import Header from './Components/Header';
 import About from './Components/About'
 import Contact from './Components/Contact'
 import Cart from './Components/Cart'
+import LoginPage from './Components/LoginPage';
 
 const App = () => {
 
@@ -19,6 +20,8 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<LoginPage />} />
+
       </Routes>
     </div>
   );
