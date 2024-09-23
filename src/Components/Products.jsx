@@ -3,12 +3,14 @@ import axios from 'axios';
 import Login from './Login';
 import { useNavigate } from 'react-router-dom';
 import { MdCancel } from "react-icons/md";
+import { useAuth } from './AuthContext';
+
 
 
 const Products = ({ item }) => {
     const [products, setProducts] = useState([]);
     const [load, setLoad] = useState(true);
-    const [login, setLogin] = useState(false);
+    const {login} = useAuth()
     const [message, setMessage] = useState(false)
 
     const handleClick = () => {
@@ -47,7 +49,7 @@ const Products = ({ item }) => {
     }, [item]);
     const navigate = useNavigate();
     const goToLogin = () => {
-        navigate('/login', { state: { login } });
+        navigate('/login');
     };
 
     return (
