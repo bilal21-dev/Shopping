@@ -8,6 +8,10 @@ body{
     box-sizing: border-box;
     font-family: "SUSE", sans-serif;
 }
+.pic{
+  height:30px;
+  /* mix-blend-mode:multiply; */
+}
 .back{
     position: fixed; /* Fixes the image to the background */
     top: 0;

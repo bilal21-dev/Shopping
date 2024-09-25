@@ -54,7 +54,7 @@ const Products = ({ item }) => {
 
     return (
         <div className="grid grid-cols-3 gap-6 p-6 ml-[215px] bg-white">
-            <div className='bg-blue-700 fixed left-4 top-[75px] w-[200px] h-[400px] rounded-md px-3 py-4 text-white flex flex-col gap-5 shadow-lg'>
+            <div className='bg-blue-700 fixed left-4 top-[120px] w-[200px] h-[340px] rounded-md px-3 py-4 text-white flex flex-col gap-5 shadow-lg'>
                 <h1 className='font-bold text-xl'>Categories</h1>
                 <ul className='text-md'>
                     <li>Men's Outfit</li>

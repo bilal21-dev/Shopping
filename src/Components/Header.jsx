@@ -6,6 +6,7 @@ const Header = () => {
     return (
         <div>
             <nav className='flex align-middle items-center justify-evenly bg-gradient-to-r from-blue-700 to-red-600 text-xl text-white py-3 mx-8 rounded-b-3xl'>
+                <li className='list-none'><img src='https://thumbs.dreamstime.com/b/mart-logo-letter-m-concept-213107037.jpg' className='pic rounded-lg'></img></li>
                 <NavLink className={(e)=>{return e.isActive? "red":""}} to="/login"><li className='list-none'>Login/Sign-Up</li></NavLink>
                 <NavLink className={(e)=>{return e.isActive? "red":""}} to="/home"><li className='list-none'>Home</li></NavLink>
                 <NavLink className={(e)=>{return e.isActive? "red":""}} to="/about"><li className='list-none'>About-Us</li></NavLink>
