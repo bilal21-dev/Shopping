@@ -14,7 +14,7 @@ const Login = () => {
     const [profile, setProfile] = useState(() => {
         return JSON.parse(localStorage.getItem("profile")) || false;
     })
-    const { setLogin } = useAuth()
+    const { setLogin,setCart} = useAuth()
     // const navigate = useNavigate();
     const handleChange2 = (e) => {
         e.preventDefault();
@@ -41,9 +41,12 @@ const Login = () => {
         localStorage.removeItem("profile")
         localStorage.removeItem("loginstate")
         localStorage.removeItem("un")
-
+        localStorage.removeItem("cart")
         setProfile(false);
         setLogin(false)
+        setCart([]);
+        console.log("logout succ");
+        
         alert("Logout successfully")
     }
     return (

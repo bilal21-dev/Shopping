@@ -10,11 +10,12 @@ import { useAuth } from './AuthContext';
 const Products = ({ item }) => {
     const [products, setProducts] = useState([]);
     const [load, setLoad] = useState(true);
-    const {login} = useAuth()
+    const {login,addToCart} = useAuth()
     const [message, setMessage] = useState(false)
 
-    const handleClick = () => {
+    const handleClick = (product) => {
         if (login) {
+            addToCart(product);
             alert("Product added to cart")
         } else {
             setMessage(true);
@@ -78,7 +79,7 @@ const Products = ({ item }) => {
                         <p className="text-lg font-semibold">${product.price}</p>
                         <div className="absolute inset-0 bg-black bg-opacity-80 flex flex-col gap-5 justify-center items-center p-4 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out rounded-lg">
                             <p className="text-sm text-white text-center">{product.description}</p>
-                            <button className='bg-yellow-400 px-2 py-1 rounded-lg text-sm' onClick={handleClick}>Add to cart</button>
+                            <button className='bg-yellow-400 px-2 py-1 rounded-lg text-sm' onClick={()=>handleClick(product)}>Add to cart</button>
                         </div>
                     </div>
                 ))
