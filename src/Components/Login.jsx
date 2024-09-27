@@ -7,7 +7,9 @@ import { CgProfile } from "react-icons/cg";
 
 
 const Login = () => {
-    const [username, setUsername] = useState("")
+    const [username, setUsername] = useState(() => {
+        return (localStorage.getItem("un")) || " ";
+    })
     const [pass, setPass] = useState("")
     const [profile, setProfile] = useState(() => {
         return JSON.parse(localStorage.getItem("profile")) || false;
@@ -18,19 +20,32 @@ const Login = () => {
         e.preventDefault();
         if (username !== "" && pass !== "") {
             setLogin(true);
+            localStorage.setItem("loginstate", true);
+            localStorage.setItem("un", username);
             setProfile(true)
             localStorage.setItem("profile", true);
+
             alert("Login Successfully")
         }
         else {
             alert("Enter complete information")
         }
     }
-    useEffect(() => {
-        window.onbeforeunload = () => {
-            localStorage.removeItem("profile"); // Clear the specific item from localStorage
-        };
-    }, []);
+    // useEffect(() => {
+    //     window.onbeforeunload = () => {
+    //         localStorage.removeItem("profile"); // Clear the specific item from localStorage
+    //     };
+    // }, []);
+
+    const logout = () =>{
+        localStorage.removeItem("profile")
+        localStorage.removeItem("loginstate")
+        localStorage.removeItem("un")
+
+        setProfile(false);
+        setLogin(false)
+        alert("Logout successfully")
+    }
     return (
         <div className="flex items-center justify-center h-screen bg-white">
             {/* Conditionally render login form or profile div based on the 'profile' state */}
@@ -86,8 +101,7 @@ const Login = () => {
                                 <li>Change Password</li>
                                 <li>Security & Privacy</li>
                                 <li>Preference</li>
-                                <li>Logout</li>
-
+                                <button onClick={logout}>Logout</button>
                             </ul>
                         </div>
                     </div>
