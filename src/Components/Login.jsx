@@ -7,14 +7,12 @@ import { CgProfile } from "react-icons/cg";
 
 
 const Login = () => {
-    const [username, setUsername] = useState(() => {
-        return (localStorage.getItem("un")) || " ";
-    })
+    const {username,setUsername}=useAuth();
     const [pass, setPass] = useState("")
     const [profile, setProfile] = useState(() => {
         return JSON.parse(localStorage.getItem("profile")) || false;
     })
-    const { setLogin, setCart, profileItem, setProfileItem } = useAuth()
+    const { setLogin, setCart, profileItem, setProfileItem,setCartProducts } = useAuth()
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     // const navigate = useNavigate();
     const handleChange2 = (e) => {
@@ -44,7 +42,9 @@ const Login = () => {
         localStorage.removeItem("un")
         localStorage.removeItem("cart")
         localStorage.removeItem("profileItem")
+        localStorage.removeItem("cartPro")
 
+        setCartProducts([])
         setProfile(false);
         setLogin(false)
         setCart([]);

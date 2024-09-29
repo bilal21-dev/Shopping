@@ -5,19 +5,23 @@ import { useNavigate } from 'react-router-dom';
 import { MdCancel } from "react-icons/md";
 import { useAuth } from './AuthContext';
 import { FaHeart } from "react-icons/fa";
+import { MdFileDownloadDone } from "react-icons/md";
 
 
 
 const Products = ({ item }) => {
     const [products, setProducts] = useState([]);
     const [load, setLoad] = useState(true);
-    const { login, addToCart, addToProfile} = useAuth()
+    const { login, addToCart, addToProfile,cartProducts,setCartProducts } = useAuth()
     const [message, setMessage] = useState(false)
+  
 
+   
     const handleClick = (product) => {
         if (login) {
             addToCart(product);
-            alert("Product added to cart")
+            setCartProducts([...cartProducts, product.id])
+            // alert("Product added to cart")
         } else {
             setMessage(true);
         }
@@ -64,7 +68,7 @@ const Products = ({ item }) => {
     };
 
     return (
-        
+
         <div className="grid grid-cols-3 gap-6 p-6 ml-[215px]">
             <div className='bg-blue-500 fixed left-4 top-[120px] w-[200px] h-[340px] rounded-md px-3 py-4 text-white flex flex-col gap-5 shadow-lg'>
                 <h1 className='font-bold text-xl'>Categories</h1>
@@ -88,11 +92,14 @@ const Products = ({ item }) => {
                         <img src={product.thumbnail} alt={product.title} className="h-48 w-48 object-contain mb-4" />
                         <h3 className="text-lg font-bold">{product.title}</h3>
                         <p className="text-lg font-semibold">${product.price}</p>
+                        {cartProducts.includes(product.id) && (
+                            <p className='text-green-600 text-sm font-bold'>Added to Cart <MdFileDownloadDone /></p>
+                        )}
+
                         <div className="absolute inset-0 bg-black bg-opacity-80 flex flex-col gap-5 justify-center items-center p-4 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out rounded-lg">
                             <p className="text-sm text-white text-center">{product.description}</p>
                             <button className='bg-yellow-400 px-2 py-1 rounded-lg text-sm hover:scale-105' onClick={() => handleClick(product)}>Add to cart</button>
-                            <FaHeart className='text-xl text-red-600 fill-red-600 absolute bottom-2 right-4 hover:scale-110' onClick={()=>handleClick2(product)} />
-
+                            <FaHeart className='text-xl text-red-600 fill-red-600 absolute bottom-2 right-4 hover:scale-110' onClick={() => handleClick2(product)} />
                         </div>
 
                     </div>
