@@ -7,12 +7,13 @@ import { CgProfile } from "react-icons/cg";
 
 
 const Login = () => {
-    const {username,setUsername}=useAuth();
+    const { username, setUsername } = useAuth();
     const [pass, setPass] = useState("")
     const [profile, setProfile] = useState(() => {
         return JSON.parse(localStorage.getItem("profile")) || false;
     })
-    const { setLogin, setCart, profileItem, setProfileItem,setCartProducts } = useAuth()
+    const [warning, setWarn] = useState(true);
+    const { setLogin, setCart, profileItem, setProfileItem, setCartProducts, setCount } = useAuth()
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     // const navigate = useNavigate();
     const handleChange2 = (e) => {
@@ -43,8 +44,11 @@ const Login = () => {
         localStorage.removeItem("cart")
         localStorage.removeItem("profileItem")
         localStorage.removeItem("cartPro")
+        localStorage.removeItem("count")
+
 
         setCartProducts([])
+        setCount(0);
         setProfile(false);
         setLogin(false)
         setCart([]);
@@ -108,9 +112,14 @@ const Login = () => {
                             Login
                         </button>
                     </form>
-                    <p className="mt-4 text-center text-sm text-gray-600">
-                        Don't have an account? <button href="/signup" className="text-blue-500" onClick={() => setShowConfirmPassword(true)}>Sign up</button>
-                    </p>
+                    {warning && (
+                        <p className="mt-4 text-center text-sm text-gray-600">
+                            Don't have an account? <button href="/signup" className="text-blue-500" onClick={() => {setShowConfirmPassword(true)
+                                setWarn(false)
+                            }}>Sign up</button>
+                        </p>
+                    )}
+
                 </div>
             ) : (
                 <div className='flex'>

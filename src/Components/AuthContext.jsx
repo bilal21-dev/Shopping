@@ -4,6 +4,9 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const [count, setCount] = useState(() => {
+        return JSON.parse(localStorage.getItem("count")) || 0;
+    });
     const [cartProducts, setCartProducts] = useState(() => {
         return JSON.parse(localStorage.getItem("cartPro")) || [];
     });
@@ -19,6 +22,9 @@ export const AuthProvider = ({ children }) => {
     const [profileItem, setProfileItem] = useState(() => {
         return JSON.parse(localStorage.getItem("profileItem")) || [];
     })
+    useEffect(() => {
+        localStorage.setItem("count", JSON.stringify(count));
+    }, [count]);
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);
@@ -38,7 +44,6 @@ export const AuthProvider = ({ children }) => {
     };
 
 
-
     const addToProfile = (product) => {
         const updatedProfile = [...profileItem, product];
         setProfileItem(updatedProfile);
@@ -56,7 +61,7 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ login, setLogin, cart, addToCart, removeFromCart, setCart, addToProfile, removeFromProfile, setProfileItem, profileItem ,username,setUsername,cartProducts,setCartProducts}}>
+        <AuthContext.Provider value={{ login, setLogin, cart, addToCart, removeFromCart, setCart, addToProfile, removeFromProfile, setProfileItem, profileItem ,username,setUsername,cartProducts,setCartProducts,count,setCount}}>
             {children}
         </AuthContext.Provider>
     );

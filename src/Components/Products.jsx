@@ -12,7 +12,7 @@ import { MdFileDownloadDone } from "react-icons/md";
 const Products = ({ item }) => {
     const [products, setProducts] = useState([]);
     const [load, setLoad] = useState(true);
-    const { login, addToCart, addToProfile,cartProducts,setCartProducts } = useAuth()
+    const { login, addToCart, addToProfile,cartProducts,setCartProducts,setCount,count } = useAuth()
     const [message, setMessage] = useState(false)
   
 
@@ -20,6 +20,7 @@ const Products = ({ item }) => {
     const handleClick = (product) => {
         if (login) {
             addToCart(product);
+            setCount(count+1)
             setCartProducts([...cartProducts, product.id])
             // alert("Product added to cart")
         } else {
