@@ -16,6 +16,7 @@ const Login = () => {
     const { setLogin, setCart, profileItem, setProfileItem, setCartProducts, setCount } = useAuth()
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     // const navigate = useNavigate();
+    const [signUp,setSignup]=useState(false);
     const handleChange2 = (e) => {
         e.preventDefault();
         if (username !== "" && pass !== "") {
@@ -109,13 +110,14 @@ const Login = () => {
                             className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
                             onClick={handleChange2}
                         >
-                            Login
+                            {signUp ? "Sign-Up" : "Login"}
                         </button>
                     </form>
                     {warning && (
                         <p className="mt-4 text-center text-sm text-gray-600">
                             Don't have an account? <button href="/signup" className="text-blue-500" onClick={() => {setShowConfirmPassword(true)
                                 setWarn(false)
+                                setSignup(true)
                             }}>Sign up</button>
                         </p>
                     )}
