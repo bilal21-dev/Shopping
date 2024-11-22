@@ -3,20 +3,18 @@ import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { IoMdCloseCircle } from "react-icons/io";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 
-
-
-
 const Contact = () => {
+  const [form, setForm] = useState(true);
+  const [pop, setPop] = useState(false);
 
-  const [form, setForm] = useState(true)
-  const [pop, setPop] = useState(false)
   const handleChange = () => {
-    setForm(false)
-    setPop(true)
-  }
+    setForm(false);
+    setPop(true);
+  };
 
   return (
-    <div className="min-h-screen mt-8">
+    <div className="min-h-screen mt-8 px-4">
+      {/* Form Section */}
       {form && (
         <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Contact Us</h2>
@@ -61,6 +59,7 @@ const Contact = () => {
             </button>
           </form>
 
+          {/* Social Media Links */}
           <div className="mt-8 flex justify-center gap-6">
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:scale-110 transition-transform">
               <FaFacebook size={30} />
@@ -74,23 +73,28 @@ const Contact = () => {
           </div>
         </div>
       )}
-      {pop && (
-           <div className='fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center'>
-           <div className='bg-white h-[250px] w-[450px] rounded-lg relative'>
-               <p className='flex justify-center mt-[20px] text-xl font-bold'>Your Message has been Delivered</p>
-               <div className='flex justify-center'>
-                   <IoCheckmarkDoneCircleOutline className='text-9xl text-green-800' />
-               </div>
-               <IoMdCloseCircle className='absolute top-[5px] right-3' onClick={()=>{
-                   setPop(false)
-                   setForm(true)
-               }}/>
-           </div>
-       </div>
-      )}
 
+      {/* Popup Section */}
+      {pop && (
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center px-4">
+          <div className="bg-white h-[250px] w-full max-w-sm sm:max-w-md md:max-w-lg rounded-lg relative p-4">
+            <p className="text-center mt-4 text-lg font-bold sm:text-xl">Your Message has been Delivered</p>
+            <div className="flex justify-center mt-4">
+              <IoCheckmarkDoneCircleOutline className="text-7xl text-green-800 sm:text-9xl" />
+            </div>
+            <IoMdCloseCircle
+              className="absolute top-2 right-3 text-2xl cursor-pointer hover:text-gray-500"
+              onClick={() => {
+                setPop(false);
+                setForm(true);
+              }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default Contact;
+

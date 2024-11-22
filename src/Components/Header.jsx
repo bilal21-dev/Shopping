@@ -1,25 +1,66 @@
-import React from 'react'
+import React from 'react';
 import { FaShoppingCart } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 
 const Header = () => {
     const { username, login, count } = useAuth();
+
     return (
-        <div className=''>
-            <nav className='flex align-middle items-center justify-evenly bg-gradient-to-r from-blue-600 to-blue-200 text-xl text-white py-3 mx-8 rounded-b-3xl'>
-                <li className='list-none'><img src='https://thumbs.dreamstime.com/b/mart-logo-letter-m-concept-213107037.jpg' className='pic rounded-lg'></img></li>
-                <NavLink className={(e) => { return e.isActive ? "red" : "" }} to="/login"><li className='list-none'> {login ? username : "Login/Sign-Up"}</li></NavLink>
-                <NavLink className={(e) => { return e.isActive ? "red" : "" }} to="/home"><li className='list-none'>Home</li></NavLink>
-                <NavLink className={(e) => { return e.isActive ? "red" : "" }} to="/about"><li className='list-none'>About-Us</li></NavLink>
-                <NavLink className={(e) => { return e.isActive ? "red" : "" }} to="/contact"><li className='list-none'>Contact-Us</li></NavLink>
-                <NavLink className={(e) => { return e.isActive ? "red" : "" }} to="/cart"><li className='list-none relative'>
-                    <FaShoppingCart className='text-2xl' />
-                    <div className='bg-black h-4 w-4 rounded-2xl text-sm text-center text-white absolute bottom-4 left-[16px]'>{count}</div></li></NavLink>
+        <div className="bg-gradient-to-r from-blue-600 to-blue-200 mx-10 rounded-b-3xl">
+            <nav className="flex flex-wrap items-center justify-evenly text-xl text-white py-3 px-4 ">
+                {/* Logo */}
+                <li className="list-none">
+                    <img
+                        src="https://thumbs.dreamstime.com/b/mart-logo-letter-m-concept-213107037.jpg"
+                        className="pic rounded-lg w-10 h-10 sm:w-12 sm:h-12"
+                        alt="Mart Logo"
+                    />
+                </li>
+
+                {/* Links */}
+                <NavLink
+                    className={(e) => (e.isActive ? "text-yellow-300" : "")}
+                    to="/login"
+                >
+                    <li className="list-none">
+                        {login ? username : "Login/Sign-Up"}
+                    </li>
+                </NavLink>
+                <NavLink
+                    className={(e) => (e.isActive ? "text-yellow-300" : "")}
+                    to="/home"
+                >
+                    <li className="list-none">Home</li>
+                </NavLink>
+                <NavLink
+                    className={(e) => (e.isActive ? "text-yellow-300" : "")}
+                    to="/about"
+                >
+                    <li className="list-none">About-Us</li>
+                </NavLink>
+                <NavLink
+                    className={(e) => (e.isActive ? "text-yellow-300" : "")}
+                    to="/contact"
+                >
+                    <li className="list-none">Contact-Us</li>
+                </NavLink>
+                <NavLink
+                    className={(e) => (e.isActive ? "text-yellow-300" : "")}
+                    to="/cart"
+                >
+                    <li className="list-none relative">
+                        <FaShoppingCart className="text-2xl" />
+                        {count > 0 && (
+                            <div className="bg-black text-white text-sm rounded-full h-4 w-4 flex items-center justify-center absolute bottom-[14px] left-[22px] sm:left-[20px] sm:bottom-[12px]">
+                                {count}
+                            </div>
+                        )}
+                    </li>
+                </NavLink>
             </nav>
-
         </div>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;

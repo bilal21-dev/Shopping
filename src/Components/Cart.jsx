@@ -6,7 +6,7 @@ import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-    const { cart, removeFromCart } = useAuth();
+    const { cart, removeFromCart, count, setCount } = useAuth();
     const GST_RATE = 0.18; // 18% GST
 
     // Initialize quantities with 1 for each product in the cart
@@ -61,7 +61,11 @@ const Cart = () => {
                             value={quantities[product.id]}
                             onChange={(e) => handleQuantityChange(product.id, parseInt(e.target.value))}
                         />
-                        <button className="px-2 py-1 rounded-md absolute right-2 bottom-2" onClick={() => removeFromCart(product.id)}>
+                        <button className="px-2 py-1 rounded-md absolute right-2 bottom-2" onClick={() => {removeFromCart(product.id)
+                            setCount(count - 1)
+                        }
+
+                        }>
                             <MdDelete className="text-3xl text-red-700" />
                         </button>
                     </div>
@@ -102,11 +106,11 @@ const Cart = () => {
                         <div className='flex justify-center mt-[40px]'>
                             <p className='font-bold'>Tracking id : <span className='font-normal'>{randomNumber}</span></p>
                         </div>
-                        <IoMdCloseCircle className='absolute top-[5px] right-3' onClick={()=>{
+                        <IoMdCloseCircle className='absolute top-[5px] right-3' onClick={() => {
                             setPopup(false)
                             setFinal(false)
                             navigate('/home');
-                        }}/>
+                        }} />
                     </div>
                 </div>
             )}

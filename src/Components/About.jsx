@@ -2,8 +2,9 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="flex flex-col justify-center items-center h-screen  text-white px-6">
-      <div className="bg-gradient-to-r from-blue-300 to-blue-100 text-black rounded-lg shadow-lg p-8 max-w-2xl w-full text-center transform transition-all hover:scale-105 ease-in-out duration-300">
+    <div className="flex flex-col justify-center items-center min-h-screen text-white px-4 sm:px-6 lg:px-8">
+      {/* Main About Us Section */}
+      <div className="bg-gradient-to-r from-blue-300 to-blue-100 text-black rounded-lg shadow-lg p-8 max-w-3xl w-full text-center transform transition-all hover:scale-105 ease-in-out duration-300">
         <h2 className="text-4xl font-bold mb-4">About Us</h2>
         <p className="text-lg mb-6">
           We are a passionate team dedicated to providing the best products and
@@ -18,16 +19,20 @@ const About = () => {
           a commitment to quality and customer satisfaction.
         </p>
       </div>
-      <div className="flex justify-center items-center mt-8 space-x-8 ">
-        <div className="bg-gradient-to-r from-blue-300 to-blue-100 p-4 rounded-lg shadow-lg transform transition-all hover:scale-105 ease-in-out duration-300">
-          <h4 className="text-xl font-bold text-black">Our Mission</h4>
+
+      {/* Mission and Vision Section */}
+      <div className="flex flex-col md:flex-row justify-center items-center mt-8 space-y-4 md:space-y-0 md:space-x-8 w-full max-w-4xl">
+        {/* Mission */}
+        <div className="bg-gradient-to-r from-blue-300 to-blue-100 p-6 rounded-lg shadow-lg transform transition-all hover:scale-105 ease-in-out duration-300 w-full md:w-1/2">
+          <h4 className="text-xl font-bold text-black mb-2">Our Mission</h4>
           <p className="text-md text-black">
             To deliver innovative and user-friendly solutions that enhance the
             everyday lives of our customers.
           </p>
         </div>
-        <div className="bg-gradient-to-r from-blue-100 to-blue-300 p-4 rounded-lg shadow-lg transform transition-all hover:scale-105 ease-in-out duration-300">
-          <h4 className="text-xl font-bold text-black">Our Vision</h4>
+        {/* Vision */}
+        <div className="bg-gradient-to-r from-blue-100 to-blue-300 p-6 rounded-lg shadow-lg transform transition-all hover:scale-105 ease-in-out duration-300 w-full md:w-1/2">
+          <h4 className="text-xl font-bold text-black mb-2">Our Vision</h4>
           <p className="text-md text-black">
             To be the leading e-commerce platform known for its excellence in
             service and customer satisfaction.
@@ -39,3 +44,4 @@ const About = () => {
 };
 
 export default About;
+
